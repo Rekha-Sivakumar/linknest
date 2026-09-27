@@ -1,0 +1,348 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.bio-container {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin: 0 auto;
+}
+
+/* Header */
+.bio-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 16px;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.display-name {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+}
+
+.username-handle {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 12px;
+}
+
+.bio-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 420px;
+    opacity: 0.85;
+    margin-bottom: 18px;
+}
+
+/* Socials Icons Row */
+.socials-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.social-icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.social-icon-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Links Stack */
+.links-stack {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.bio-link-card {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bio-link-card:hover {
+    transform: translateY(-3px) scale(1.01);
+}
+
+.link-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.link-icon-box {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-icon {
+    opacity: 0.6;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.bio-link-card:hover .arrow-icon {
+    opacity: 1;
+    transform: translateX(3px);
+}
+
+/* Footer */
+.bio-footer {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.powered-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+}
+
+.powered-badge:hover {
+    opacity: 1;
+}
+
+/* ====================================================
+   THEMES
+   ==================================================== */
+
+/* 1. Midnight Theme (Default) */
+body.theme-midnight {
+    background: radial-gradient(circle at top, #1e1b4b, #0f172a 70%);
+    color: #f8fafc;
+}
+body.theme-midnight .avatar-img {
+    border: 3px solid #6366f1;
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+}
+body.theme-midnight .social-icon-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+body.theme-midnight .social-icon-btn:hover {
+    background: #6366f1;
+    color: #ffffff;
+}
+body.theme-midnight .bio-link-card {
+    background: rgba(30, 41, 59, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    color: #ffffff;
+}
+body.theme-midnight .bio-link-card:hover {
+    border-color: #6366f1;
+    background: rgba(49, 46, 129, 0.85);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);
+}
+body.theme-midnight .powered-badge {
+    background: rgba(255, 255, 255, 0.06);
+    color: #94a3b8;
+}
+
+/* 2. Cyberpunk Theme */
+body.theme-cyberpunk {
+    background: #080811;
+    color: #f0fdf4;
+}
+body.theme-cyberpunk .avatar-img {
+    border: 3px solid #06b6d4;
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+}
+body.theme-cyberpunk .display-name {
+    color: #38bdf8;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+body.theme-cyberpunk .social-icon-btn {
+    background: #111827;
+    color: #06b6d4;
+    border: 1px solid #06b6d4;
+}
+body.theme-cyberpunk .social-icon-btn:hover {
+    background: #06b6d4;
+    color: #000;
+}
+body.theme-cyberpunk .bio-link-card {
+    background: #111827;
+    border: 1px solid #ec4899;
+    color: #fdf2f8;
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.15);
+}
+body.theme-cyberpunk .bio-link-card:hover {
+    background: #1f2937;
+    border-color: #06b6d4;
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
+}
+body.theme-cyberpunk .powered-badge {
+    background: #111827;
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+/* 3. Sunset Gradient Theme */
+body.theme-sunset {
+    background: linear-gradient(135deg, #f43f5e, #8b5cf6, #3b82f6);
+    color: #ffffff;
+}
+body.theme-sunset .avatar-img {
+    border: 3px solid #ffffff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+body.theme-sunset .social-icon-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    backdrop-filter: blur(6px);
+}
+body.theme-sunset .social-icon-btn:hover {
+    background: #ffffff;
+    color: #f43f5e;
+}
+body.theme-sunset .bio-link-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+}
+body.theme-sunset .bio-link-card:hover {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+body.theme-sunset .powered-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+/* 4. Emerald Neon Theme */
+body.theme-emerald {
+    background: radial-gradient(circle at top, #064e3b, #022c22 80%);
+    color: #ecfdf5;
+}
+body.theme-emerald .avatar-img {
+    border: 3px solid #10b981;
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+}
+body.theme-emerald .social-icon-btn {
+    background: rgba(16, 185, 129, 0.15);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+body.theme-emerald .social-icon-btn:hover {
+    background: #10b981;
+    color: #064e3b;
+}
+body.theme-emerald .bio-link-card {
+    background: rgba(6, 78, 59, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #ecfdf5;
+}
+body.theme-emerald .bio-link-card:hover {
+    background: rgba(4, 120, 87, 0.7);
+    border-color: #34d399;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+body.theme-emerald .powered-badge {
+    background: rgba(16, 185, 129, 0.15);
+    color: #a7f3d0;
+}
+
+/* 5. Minimal Monochrome Theme */
+body.theme-minimal {
+    background: #fafafa;
+    color: #09090b;
+}
+body.theme-minimal .avatar-img {
+    border: 3px solid #e4e4e7;
+}
+body.theme-minimal .social-icon-btn {
+    background: #f4f4f5;
+    color: #18181b;
+    border: 1px solid #e4e4e7;
+}
+body.theme-minimal .social-icon-btn:hover {
+    background: #18181b;
+    color: #ffffff;
+}
+body.theme-minimal .bio-link-card {
+    background: #ffffff;
+    border: 1px solid #e4e4e7;
+    color: #18181b;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+body.theme-minimal .bio-link-card:hover {
+    border-color: #09090b;
+    background: #ffffff;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+body.theme-minimal .powered-badge {
+    background: #f4f4f5;
+    color: #71717a;
+    border: 1px solid #e4e4e7;
+}
