@@ -1,76 +1,31 @@
-# 🔗 LinkNest - Custom Bio-Page & Dynamic QR Code Studio
+# 🔗 LinkNest - URL Shortener & Dynamic QR Code Studio
 
-> A simple, innovative, and cloud-ready Java application that functions as your own self-hosted **Linktree + Bitly + Branded QR Code Generator** with real-time click and device analytics.
-
----
-
-## ✨ Features & Innovation
-
-1. **🎨 Interactive Bio-Page Builder with Live Phone Mockup**:
-   - Create your personal bio-link page (e.g. `http://localhost:8080/p/alex`).
-   - Live interactive **Phone Mockup** updates in real-time as you type your name, bio, or add links.
-   - Choose between **5 beautiful themes**: *Midnight Indigo, Cyberpunk Neon, Sunset Gradient, Emerald Dark, and Minimal Monochrome*.
-   - Add social icons (GitHub, LinkedIn, Twitter/X, YouTube, Email).
-
-2. **✂️ URL Shortener & Click Tracking**:
-   - Shorten any long URL with customizable slugs (e.g., `/r/portfolio` or `/r/resume`).
-   - Automatically tracks click counts, referral sources, and timestamps.
-
-3. **📱 Dynamic Branded QR Code Studio (Pure Java ZXing)**:
-   - Generates high-resolution PNG QR codes directly in Java.
-   - Fully customizable **Foreground** and **Background** colors (matching your personal brand).
-   - One-click **Download as PNG** or copy short link.
-
-4. **📊 Real-Time Analytics Dashboard**:
-   - **KPI Cards**: Total Profile Views, Bio Link Clicks, Short URL Clicks, Grand Total Engagements.
-   - **Device Breakdown**: Detects device types (*Mobile vs. Desktop vs. Tablet*) from User-Agent headers with visual progress bars.
-   - **Top Links Leaderboard**: Shows which links are getting the most traffic.
-   - **Live Interaction Feed**: Real-time stream of incoming clicks.
-
-5. **☁️ Render.com Deployment Ready**:
-   - Comes with multi-stage `Dockerfile` and `render.yaml`.
-   - Zero-dependency file persistence (`linknest-data.json`).
-   - Health check endpoint `/api/health` for cloud monitoring.
+> A clean, simple, and innovative Java application for **shortening URLs** and **generating customizable, downloadable QR codes** for any website.
 
 ---
 
-## 🏗️ Architecture
+## ✨ Core Features
 
-```
-d:/New folder/
-├── Dockerfile                  # Multi-stage Docker build for Render
-├── render.yaml                 # Render Blueprint configuration
-├── pom.xml                     # Maven build (Java 21/24, Spring Boot 3.4, Google ZXing)
-├── src/
-│   ├── main/
-│   │   ├── java/com/linknest/
-│   │   │   ├── LinkNestApplication.java       # Spring Boot main class
-│   │   │   ├── controller/
-│   │   │   │   ├── ApiController.java         # REST APIs (Profile, Links, URLs, Analytics, Health)
-│   │   │   │   └── PublicPageController.java  # Public bio page /p/{user}, redirects /r/{code}, QR API
-│   │   │   ├── model/
-│   │   │   │   ├── Profile.java               # Bio-page model (theme, links, socials)
-│   │   │   │   ├── LinkItem.java              # Individual link card
-│   │   │   │   ├── ShortUrl.java              # Shortened URL entity with device counters
-│   │   │   │   ├── ClickEvent.java            # Event model for click streams
-│   │   │   │   └── AnalyticsSummary.java      # Aggregated dashboard metrics
-│   │   │   └── service/
-│   │   │       ├── QrCodeService.java         # Pure Java ZXing dynamic QR generator
-│   │   │       ├── AnalyticsService.java      # Device detection & engagement metrics
-│   │   │       └── DataStorageService.java    # JSON file persistence with demo seed
-│   │   └── resources/
-│   │       ├── application.properties         # Server port & storage path
-│   │       └── static/
-│   │           ├── index.html                 # Admin Studio (Phone mockup, QR studio, Analytics)
-│   │           ├── bio.html                   # Public Bio-Page template
-│   │           ├── css/style.css              # Studio styles & dark theme
-│   │           ├── css/bio.css                # Public Bio-Page styling & 5 theme presets
-│   │           ├── js/app.js                  # Studio reactive logic & live phone preview
-│   │           └── js/bio.js                  # Public bio-page client script
-│   └── test/
-│       └── java/com/linknest/
-│           └── LinkNestServicesTest.java      # Automated unit tests for QR, Analytics, Storage
-```
+1. **✂️ Fast URL Shortener**:
+   - Paste any long URL to create a clean `/r/{code}` redirect link.
+   - Choose a custom alias (e.g. `/r/portfolio`) or auto-generate a short code.
+   - Live click counter for each shortened link.
+
+2. **📱 Branded QR Code Generator**:
+   - Generates high-resolution PNG QR codes directly in Java using Google ZXing.
+   - Custom **QR Color** and **Background Color** pickers with instant live preview.
+   - Adjustable resolution: Small (250px), Medium (400px), High-Res (700px).
+   - **Download as PNG** button to save directly to your device.
+   - **Copy QR Image** button to copy the image directly to your clipboard.
+
+3. **📋 Easy Link Management**:
+   - One-click copy for both short links and QR codes.
+   - Table of generated links with total click counts and quick QR viewing.
+
+4. **☁️ Render.com Ready**:
+   - Dockerized with a multi-stage `Dockerfile` and `render.yaml`.
+   - Lightweight file-based JSON persistence (`linknest-urls.json`).
+   - Ready for 1-click free deployment on Render.
 
 ---
 
@@ -89,48 +44,31 @@ mvn spring-boot:run
 ```
 
 ### 2. Open in Your Browser
-- **Studio Dashboard (Builder & Analytics)**:
-  👉 **`http://localhost:8080`**
-- **Public Bio Page**:
-  👉 **`http://localhost:8080/p/alex`**
+👉 **`http://localhost:8080`**
 
 ---
 
 ## ☁️ How to Deploy Live to Render.com
 
-### Step 1: Push Code to GitHub
-Open PowerShell and run:
+### Step 1: Push Code to Your GitHub Repository
+In PowerShell:
 
 ```powershell
 d:
 cd "d:\New folder"
-git init
 git add .
-git commit -m "Initial commit of LinkNest"
-git branch -M main
-git remote add origin https://github.com/<YOUR-USERNAME>/<YOUR-REPO-NAME>.git
+git commit -m "Update: Focused URL shortener and QR generator"
 git push -u origin main
 ```
 
-*(Note: If you don't have Git installed, install it in PowerShell with `winget install Git.Git` or upload the folder to GitHub via browser).*
-
 ### Step 2: Deploy on Render
-1. Log in to [dashboard.render.com](https://dashboard.render.com).
-2. Click **New +** ➔ **Web Service**.
-3. Connect your GitHub repository.
-4. Render will auto-detect the `Dockerfile`:
+1. Go to [dashboard.render.com](https://dashboard.render.com) and click **New +** ➔ **Web Service**.
+2. Select your `linknest` GitHub repository.
+3. Render will auto-detect the `Dockerfile`:
    - **Runtime**: `Docker`
    - **Plan**: `Free`
    - **Health Check Path**: `/api/health`
-5. Click **Deploy Web Service**!
-6. Once built, you will get your live public URL:
-   ```
-   https://linknest-xxxx.onrender.com
-   ```
-   Your public bio will be live at:
-   ```
-   https://linknest-xxxx.onrender.com/p/alex
-   ```
+4. Click **Deploy Web Service**!
 
 ---
 
@@ -138,13 +76,9 @@ git push -u origin main
 
 | Endpoint | Method | Description |
 | :--- | :--- | :--- |
-| `/p/{username}` | `GET` | Public bio-page |
-| `/r/{code}` | `GET` | Short URL redirect with click logging |
-| `/click/{linkId}` | `GET` | Bio link redirect with click logging |
-| `/api/qr` | `GET` | Dynamic QR code PNG (`?text=...&fg=...&bg=...`) |
-| `/api/profile` | `GET` / `PUT` | Read or update bio-page details |
-| `/api/links` | `POST` | Add a new bio link |
-| `/api/links/{id}` | `PUT` / `DELETE` | Edit or remove a link |
-| `/api/urls` | `GET` / `POST` | List or create short URLs |
-| `/api/analytics` | `GET` | Device metrics, click counts, live feed |
+| `/api/urls` | `POST` | Create a short URL (`{ "targetUrl": "...", "code": "..." }`) |
+| `/api/urls` | `GET` | Retrieve list of all shortened URLs |
+| `/api/urls/{code}` | `DELETE` | Delete a shortened URL |
+| `/api/qr` | `GET` | Generate dynamic QR PNG image (`?text=...&fg=...&bg=...&size=...`) |
+| `/r/{code}` | `GET` | Redirect to destination URL and track clicks |
 | `/api/health` | `GET` | Cloud health check |
